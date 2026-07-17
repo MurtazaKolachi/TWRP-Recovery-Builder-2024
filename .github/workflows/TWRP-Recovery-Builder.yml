@@ -29,6 +29,11 @@ on:
         description: 'Custom Recovery Source Branch (Optional)'
         required: false
         default: 'android-12.1'
+      USE_CUSTOM_RECOVERY:
+        description: 'Use Custom Recovery Source'
+        type: boolean
+        required: true
+        default: true
       DEVICE_PATH:
         description: 'Specify your Device Path' 
         required: true
@@ -80,6 +85,7 @@ jobs:
         echo "Manifest Branch: ${{ github.event.inputs.MANIFEST_BRANCH }}"
         echo "Device Tree: ${{ github.event.inputs.DEVICE_TREE }}"
         echo "Device Branch: ${{ github.event.inputs.DEVICE_TREE_BRANCH }}"
+        echo "Use Custom Recovery: ${{ github.event.inputs.USE_CUSTOM_RECOVERY }}"
         echo "Custom Recovery Source: ${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE }}"
         echo "Custom Recovery Source Branch: ${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE_BRANCH }}"
         echo "Device Path: ${{ github.event.inputs.DEVICE_PATH }}"
@@ -142,7 +148,7 @@ jobs:
     - name: Clone Custom Recovery Source
       run: |
         cd workspace
-        if [ ! -z "${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE }}" ]; then
+        if [ "${{ github.event.inputs.USE_CUSTOM_RECOVERY }}" = "true" ] && [ ! -z "${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE }}" ]; then
             echo "Removing default bootable/recovery..."
             rm -rf bootable/recovery
             echo "Cloning custom recovery source from ${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE }} (branch: ${{ github.event.inputs.CUSTOM_RECOVERY_SOURCE_BRANCH }})..."

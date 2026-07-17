@@ -51,6 +51,7 @@ only Supports TWRP  (14.1 is not ready yet) / 12.1 / 11 / 9.0
 | `DEVICE_TREE_BRANCH` | Device branch that you want to use for build (typically corresponds to the manifest branch) | android-14 |
 | `CUSTOM_RECOVERY_SOURCE` | Custom recovery source code repository to replace default `bootable/recovery` (Optional) | https://github.com/sekaiacg/twrp_recovery |
 | `CUSTOM_RECOVERY_SOURCE_BRANCH` | Branch of the custom recovery source repository (Optional) | android-12.1 |
+| `USE_CUSTOM_RECOVERY` | Toggle to enable/disable the custom recovery source | `true` (checked) or `false` (unchecked) |
 | `DEVICE_PATH` | Device tree location for syncing, relative to workspace root (usually listed as "LOCAL_PATH" or "DEVICE_PATH" in BoardConfig.mk) | device/samsung/a05s |
 | `DEVICE_NAME` | Model name (same as twrp_`<DEVICE_NAME>`.mk from device tree) | a05s |
 | `DEVICE_MAKEFILE` | Name of device-specific makefile from tree (format: `<PREFIX>_<DEVICE_NAME>`) | twrp_a05s |
